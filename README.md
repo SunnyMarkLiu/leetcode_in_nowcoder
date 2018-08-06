@@ -2,8 +2,11 @@
 Classic High Frequency Leetcode programming problems solved in Python and Java.
 
 ## Important
-- sort_list
-- insertion_sort_list
+- sort list
+- insertion sort list
+- word break
+- word break II
+- Longest Palindromic Substring
 
 ## License
 This project is licensed under the terms of the MIT license.
