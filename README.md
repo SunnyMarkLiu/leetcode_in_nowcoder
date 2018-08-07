@@ -7,6 +7,9 @@ Classic High Frequency Leetcode programming problems solved in Python and Java.
 - word break
 - word break II
 - Longest Palindromic Substring
+- palindrome partitioning
+- palindrome_partitioning_ii
+- clone_graph
 
 ## License
 This project is licensed under the terms of the MIT license.
