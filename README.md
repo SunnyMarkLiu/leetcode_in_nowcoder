@@ -10,6 +10,7 @@ Classic High Frequency Leetcode programming problems solved in Python and Java.
 - palindrome partitioning
 - palindrome_partitioning_ii
 - clone_graph
+- path_sum_ii
 
 ## License
 This project is licensed under the terms of the MIT license.
