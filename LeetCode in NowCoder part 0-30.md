@@ -1246,7 +1246,7 @@ public int singleNumber(int[] A) {
             ones &= ~threes;//抹去出现了3次的bits
             twos &= ~threes;
         }
-        return ones; 
+        return ones;
     }
 }
 ```
@@ -1406,10 +1406,12 @@ package gas_station;
 /**
  * There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
  * <p>
- * You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1).
+ * You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from
+ station i to its next station (i+1).
  * You begin the journey with an empty tank at one of the gas stations.
  * <p>
- * Return the starting gas station's index if you can travel around the circuit once, otherwise return -1.
+ * Return the starting gas station's index if you can travel around the circuit once,
+ otherwise return -1.
  * Note:
  * The solution is guaranteed to be unique.
  */
@@ -1460,8 +1462,10 @@ public class Solution {
     /**
      * 中心扩展法
      *
-     * 基本思路是对于每个子串的中心（可以是一个字符，或者是两个字符的间隙，比如串abc,中心可以是a,b,c,或者是ab的间隙，bc的间隙）
-     * 往两边同时进行扫描，直到不是回文串为止。假设字符串的长度为n,那么中心的个数为2*n-1(字符作为中心有n个，间隙有n-1个）。
+     * 基本思路是对于每个子串的中心（可以是一个字符，或者是两个字符的间隙，比如串abc,
+     中心可以是a,b,c,或者是ab的间隙，bc的间隙）
+     * 往两边同时进行扫描，直到不是回文串为止。假设字符串的长度为n,
+     那么中心的个数为2*n-1(字符作为中心有n个，间隙有n-1个）。
      * 对于每个中心往两边扫描。
      */
     public String longestPalindrome(String s) {
@@ -1582,7 +1586,8 @@ public class Solution {
 package sum_root_to_leaf_numbers;
 
 /**
- * Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+ * Given a binary tree containing digits from 0-9 only,
+ each root-to-leaf path could represent a number.
  * <p>
  * An example is the root-to-leaf path 1->2->3 which represents the number123.
  * <p>
@@ -1674,8 +1679,10 @@ public class Solution {
      *
      * 接下来我们套用上面的思路来解这道题：
      * 首先我们要存储的历史信息res[i]是表示到字符串s的第i个元素为止能不能用字典中的词来表示，
-     * 我们需要一个长度为 n 的布尔数组来存储信息。然后假设我们现在拥有 res[0,...,i-1] 的结果，我们来获得res[i]的表达式。
-     * 思路是对于每个以i为结尾的子串，看看他是不是在字典里面以及他之前的元素对应的res[j]是不是true，如果都成立，那么res[i]为true
+     * 我们需要一个长度为 n 的布尔数组来存储信息。然后假设我们现在拥有 res[0,...,i-1] 的结果，
+     我们来获得res[i]的表达式。
+     * 思路是对于每个以i为结尾的子串，看看他是不是在字典里面以及他之前的元素对应的res[j]是不是true，
+     如果都成立，那么res[i]为true
      *
      */
     public boolean wordBreak(String s, Set<String> dict) {
@@ -1713,7 +1720,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
+ * Given a string s and a dictionary of words dict, add spaces in s to construct
+ a sentence where each word is a valid dictionary word.
  * <p>
  * Return all such possible sentences.
  * <p>
@@ -1990,4 +1998,3 @@ public class Solution {
     }
 }
 ```
-
