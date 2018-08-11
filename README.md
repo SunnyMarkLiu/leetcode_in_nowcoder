@@ -12,6 +12,7 @@ Classic High Frequency Leetcode programming problems solved in Python and Java.
 - clone_graph
 - path_sum_ii
 - convert_sorted_list_to_binary_search_tree
+- binary-tree-maximum-path-sum
 
 ## License
 This project is licensed under the terms of the MIT license.
