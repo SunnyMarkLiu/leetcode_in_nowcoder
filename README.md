@@ -13,6 +13,7 @@ Classic High Frequency Leetcode programming problems solved in Python and Java.
 - path_sum_ii
 - convert_sorted_list_to_binary_search_tree
 - binary-tree-maximum-path-sum
+- distinct_subsequences
 
 ## License
 This project is licensed under the terms of the MIT license.
