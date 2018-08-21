@@ -15,6 +15,8 @@ Classic High Frequency Leetcode programming problems solved in Python and Java.
 - binary-tree-maximum-path-sum
 - distinct_subsequences
 - triangle
+- validate_binary_search_tree
+- recover_binary_search_tree
 
 ## License
 This project is licensed under the terms of the MIT license.
