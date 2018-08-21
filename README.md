@@ -17,6 +17,8 @@ Classic High Frequency Leetcode programming problems solved in Python and Java.
 - triangle
 - validate_binary_search_tree
 - recover_binary_search_tree
+- unique_binary_search_trees
+- unique_binary_search_trees_ii
 
 ## License
 This project is licensed under the terms of the MIT license.
