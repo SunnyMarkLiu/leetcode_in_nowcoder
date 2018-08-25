@@ -19,7 +19,11 @@ Classic High Frequency Leetcode programming problems solved in Python and Java.
 - recover_binary_search_tree
 - unique_binary_search_trees
 - unique_binary_search_trees_ii
+- remove_duplicates_from_sorted_list
 - remove_duplicates_from_sorted_list_ii
+- largest_rectangle_in_histogram
+- search_in_rotated_sorted_array
+- search_in_rotated_sorted_array_ii
 
 ## License
 This project is licensed under the terms of the MIT license.

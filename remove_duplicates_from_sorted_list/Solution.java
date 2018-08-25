@@ -22,20 +22,21 @@ public class Solution {
      * 注意是已经排序的链表，采用双指针法，从头开始扫描
      */
     public ListNode deleteDuplicates1(ListNode head) {
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
+        if (head == null)
+            return null;
 
-        ListNode p1 = head, p2 = head;
-        while (p2 != null) {
-            p2 = p2.next;
-            // 过滤重复值，注意此处有节点断开，说明下 JVM 进行内存的回收
-            while (p2 != null && p1.val == p2.val)
-                p2 = p2.next;
+        ListNode pre = head;
+        ListNode cur = head.next;
 
-            p1.next = p2;
-            p1 = p2;
+        while (cur != null) {
+            if (pre.val == cur.val)
+                // 过滤重复值，注意此处有节点断开，说明下 JVM 进行内存的回收
+                pre.next = cur.next;
+            else
+                pre = cur;
+            cur = cur.next;
         }
-        return dummy.next;
+        return head;
     }
 
     /**
