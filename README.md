@@ -25,6 +25,8 @@ Classic High Frequency Leetcode programming problems solved in Python and Java.
 - search_in_rotated_sorted_array
 - search_in_rotated_sorted_array_ii
 - remove_duplicates_from_sorted_array_ii
+- word_search
+- combinations
 
 ## License
 This project is licensed under the terms of the MIT license.
