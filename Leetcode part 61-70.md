@@ -389,3 +389,239 @@ public class Solution {
     }
 }
 ```
+
+## 68. minimum_window_substring
+```java
+package minimum_window_substring;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 从母串S中找到这样一个子串W，这个子串包含目标T串中的所有字符，并且该子串的长度最短。
+ * Given a string S and a string T, find the minimum window in S
+ * which will contain all the characters in T in complexity O(n).
+ *
+ * For example,
+ * S ="XADOBECODEBANC"
+ * T ="ABC"
+ *
+ * Minimum window is"BANC".
+ *
+ * Note:
+ * If there is no such window in S that covers all characters in T, return the emtpy string"".
+ * If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.
+ */
+public class Solution {
+    public String minWindow(String s, String t) {
+        if (s == null || t == null || s.length() < t.length())
+            return "";
+
+        // HashMap的key为t中各个字符，value为对应字符个数
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        for (char c : t.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        // minLeft为最小窗口左下标，minLen为最小长度，count用来计数
+        int minLeft = 0, minLen = s.length() + 1, count = 0;
+        int left = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (map.containsKey(c)) {
+                // 如果map.get(c)说明t中还有字符没有包含，计数器+1
+                if (map.get(c) > 0){
+                    count++;
+                }
+                map.put(c, map.get(c) - 1);
+            }
+            // 如果left到i中包含t中所有字符
+            while (count == t.length()) {
+                if (i - left + 1 < minLen) {
+                    minLeft = left;
+                    minLen = i - left + 1;
+                }
+                c = s.charAt(left);
+                // 去除左边无效的不符合的字符，试图缩短 window 的大小
+                if (map.containsKey(c)) {
+                    map.put(c, map.get(c) + 1);
+                    if (map.get(c) > 0)
+                        count--;
+                }
+                left++;
+            }
+        }
+
+        if (minLen > s.length())
+            return "";
+
+        return s.substring(minLeft, minLeft + minLen);
+
+    }
+}
+```
+
+## 69. sort_colors
+```java
+package sort_colors;
+
+/**
+ * 将数组排序，数组中只有三个元素0,1,2，排列后的顺序为 0 1 2 (red, white, and blue)
+ */
+public class Solution {
+
+    /**
+     * 方法一：计数排序
+     */
+    public void sortColors2(int[] A) {
+       int[] count = new int[3];
+
+       // 计数
+       for (int i=0; i< A.length; i++)
+           count[A[i]]++;
+
+       int idx = 0;
+       for (int i=0; i < 3; i++) {
+           for (int j = 0; j < count[i]; j++)
+               A[idx++] = i;
+       }
+
+    }
+
+    /**
+     * 双指针法，分别从原数组的首尾往中心移动
+     * 定义 red 指针指向开头位置，blue 指针指向末尾位置
+     * 从头开始遍历原数组：
+     *    如果遇到 0，则属于左半边，和 red 指向的值交换，此时一个red确认，然后red++；
+     *    如果遇到 1，不交换，继续遍历；
+     *    如果遇到 2，则属于右半边，和 blue 指向的值交换，此时一个 blue 确认，所以 blue--，
+     *              但由于交换的i不知道大小所以 i--
+     */
+    public void sortColors(int[] A) {
+        if (A == null) return;
+
+        int red = 0;
+        int blue = A.length - 1;
+
+        for (int i = 0; i <= blue; i++) {
+            if (A[i] == 0) {
+                int tmp = A[i];
+                A[i] = A[red];
+                A[red] = tmp;
+                red++;
+            }
+            if (A[i] == 2) {
+                int tmp = A[i];
+                A[i] = A[blue];
+                A[blue] = tmp;
+                i--;
+                blue--;
+            }
+        }
+    }
+}
+```
+
+## 70. search_a_2d_matrix
+```java
+package search_a_2d_matrix;
+
+/**
+ * m x n matrix: Integers in each row are sorted from left to right.
+ *
+ * [
+ *   [1,   3,  5,  7],
+ *   [10, 11, 16, 20],
+ *   [23, 30, 34, 50]
+ * ]
+ */
+public class Solution {
+
+    /**
+     * 从左下角开始检索，如果 target 比左下角的值小向上，比左下角值大向右
+     */
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
+            return false;
+
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        for (int i = rows - 1, j = 0; i >= 0 && j < cols;) {
+            if (matrix[i][j] == target)
+                return true;
+
+            else if (target < matrix[i][j])
+                i--;
+            else
+                j++;
+        }
+        return false;
+    }
+}
+```
+
+## 71. set_matrix_zeroes
+```java
+package set_matrix_zeroes;
+
+/**
+ * 将矩阵中有 0 值的行列都设置为 0
+ *
+ * 直接的思路：创建一个和 matrix 一样大小的矩阵，遍历 matrix，空间复杂度 O(mn)
+ *   => 创建两个数组，一个标记哪一行有 0，一个标记那一列有 0，空间复杂度 O(m+n)
+ *   => 直接用 matrix 的第一行和第一列作为标记数组，不用创建新的数组， O(1)
+ */
+public class Solution {
+    public void setZeroes(int[][] matrix) {
+        if (matrix == null)
+            return;
+
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        boolean rowZero = false;
+        boolean colZero = false;
+
+        // 判断第一行和第一列是否有零，最后用于更新第一行和第一列
+        for (int i=0; i<rows; i++) {
+            if (matrix[i][0] == 0) {
+                rowZero = true;
+                break;
+            }
+        }
+
+        for (int i=0; i<cols; i++) {
+            if (matrix[0][i] == 0) {
+                colZero = true;
+                break;
+            }
+        }
+
+        // 第二行和第二列遍历数组，在第一行和第一列标记剩下的行列0的情况
+        for (int i=1; i<rows; i++) {
+            for (int j=1; j<cols; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0; // 标记第 i 行出现 0
+                    matrix[0][j] = 0; // 标记第 j 列出现 0
+                }
+            }
+        }
+
+        // 根据第一行和第一列是否有 0 设置 matrix
+        for (int i=1; i<rows; i++) {
+            for (int j = 1; j < cols; j++) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
+                    matrix[i][j] = 0;
+            }
+        }
+
+        // 设置第一行第一列
+        if (rowZero)
+            for (int i = 0; i < rows; i++)
+                matrix[i][0] = 0;
+
+        if (colZero)
+            for (int i = 0; i < cols; i++)
+                matrix[0][i] = 0;
+    }
+}
+```

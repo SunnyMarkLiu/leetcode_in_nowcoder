@@ -65,6 +65,6 @@ if cur_count > 0:
         f.write('{}\t{}'.format(cur_count, cur_latest_time))
 
     # 重命名文件
-    os.rename('tmp.md', 'LeetCode in NowCoder part {}-{}.md'.format(latest_count, cur_count))
+    os.rename('tmp.md', '../LeetCode in NowCoder part {}-{}.md'.format(latest_count, cur_count))
 else:
     os.remove('tmp.md')
