@@ -11,7 +11,7 @@ files = [f for f in os.listdir('./') if os.path.isdir(f) and not f.startswith('.
 
 file_dicts = {}
 for f in files:
-    code_file = './{}/Solution.java'.format(f)
+    code_file = './{}/Main.java'.format(f)
     create_time = os.path.getctime(code_file)
     file_dicts[f] = create_time
 
@@ -34,7 +34,7 @@ output = open('tmp.md', 'w', encoding='utf-8')
 for f in file_dicts:
     f = f[0]
     # 获取源程序创建的时间
-    code_file = './{}/Solution.java'.format(f)
+    code_file = './{}/Main.java'.format(f)
     create_time = os.path.getctime(code_file)
 
     # 忽略之前的题目
