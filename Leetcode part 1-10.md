@@ -30,16 +30,12 @@ public class Solution {
     private void recursionHelper(ArrayList<Integer> result, TreeNode root) {
         if (root == null)
             return;
-
         // 访问左子树
-        if (root.left != null)
-            recursionHelper(result, root.left);
+        recursionHelper(result, root.left);
         // 访问根节点
         result.add(root.val);
         // 访问右子树
-        if (root.right != null)
-            recursionHelper(result, root.right);
-
+        recursionHelper(result, root.right);
     }
 
     /**
@@ -237,12 +233,8 @@ public class Solution {
         if (root == null)
             return;
 
-        if (root.left != null)
-            recursionHelper(result, root.left);
-
-        if (root.right != null)
-            recursionHelper(result, root.right);
-
+        recursionHelper(result, root.left);
+        recursionHelper(result, root.right);
         result.add(root.val);
     }
 
@@ -334,14 +326,10 @@ public class Solution {
 
         // 访问根节点
         result.add(root.val);
-
         // 访问左子树
-        if (root.left != null)
-            recursionHelper(result, root.left);
-
+        recursionHelper(result, root.left);
         // 访问右子树
-        if (root.right != null)
-            recursionHelper(result, root.right);
+        recursionHelper(result, root.right);
     }
 
     /**
@@ -546,8 +534,7 @@ public class Solution {
     }
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if (inorder == null || preorder == null ||
-                inorder.length == 0 || preorder.length == 0)
+        if (inorder == null || preorder == null || inorder.length == 0 || preorder.length == 0)
             return null;
 
         return buildHelper(preorder, 0, preorder.length-1,
@@ -608,20 +595,19 @@ public class Solution {
     }
 
     public boolean hasCycle(ListNode head) {
-        if (head == null)
+            if (head == null)
+                return false;
+            
+            ListNode fast = head;
+            ListNode slow = head;
+            while (slow != null && fast != null && fast.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+                if (fast == slow)
+                    return true;
+            }
             return false;
-
-        ListNode fast = head.next;
-        ListNode slow = head;
-
-        while (slow != null && fast != null && fast.next != null) {
-            if (fast == slow)
-                return true;
-            fast = fast.next.next;
-            slow = slow.next;
         }
-        return false;
-    }
 }
 ```
 
@@ -630,7 +616,7 @@ public class Solution {
 package Linked_List_Cycle_II;
 
 /**
- * Given a linked list, return the node where the cycle begins. If there is no cycle, returnnull.
+ * Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
  */
 public class Solution {
 
@@ -649,16 +635,14 @@ public class Solution {
      */
     private ListNode getNodeInLoop(ListNode head) {
         ListNode slow = head;
-        ListNode fast = head.next;
+        ListNode fast = head;
 
         while (slow != null && fast != null && fast.next != null) {
-            if (fast == slow)
-                return fast;
-
             fast = fast.next.next;
             slow = slow.next;
+            if (fast == slow)
+                return fast;
         }
-
         return null;
     }
 
